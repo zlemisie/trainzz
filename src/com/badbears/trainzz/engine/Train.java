@@ -16,7 +16,7 @@ public class Train implements ITrain {
 
 	private void setRandomSpeed() {
 		Random r = new Random();
-		speed = r.nextInt(10) + 11;
+		speed = r.nextInt(10) + 1;
 	}
 
 	@Override
@@ -27,5 +27,17 @@ public class Train implements ITrain {
 	@Override
 	public double getCurrentElementProgress() {
 		return currentElementProgress;
+	}
+
+	@Override
+	public void calculatePostion(int milis) {
+		double currentProgress = speed * milis / currentElement.getLength();
+		currentElementProgress = currentElementProgress + currentProgress ;
+	}
+	
+	@Override
+	public void goToNextElement(ITrackElement nextElement, double nextElementProgress) {
+		this.currentElement = nextElement;
+		this.currentElementProgress = nextElementProgress;
 	}
 }

@@ -30,22 +30,26 @@ public class BoardTest {
 	@Test
 	public void testAddTrain() {
 		Set<ITrackElement> elements = board.getEndElements();
-		Assert.assertEquals(elements.size(), 2);
 		for (ITrackElement element:elements) {
-			//ITrain train = new Train(element);
-			board.addTrain(element);
+			ITrain train = new Train(element);
+			board.addTrain(train);
 		}
 
 	}
 
 	@Test
 	public void testGetEndElements() {
-		fail("Not yet implemented");
+		Set<ITrackElement> elements = board.getEndElements();
+		Assert.assertEquals(elements.size(), 2);
 	}
 
 	@Test
 	public void testGetNextElements() {
-		fail("Not yet implemented");
+		Set<ITrackElement> elements = board.getEndElements();
+		for (ITrackElement element:elements) {
+			Set<ITrackElement> nextElements = board.getNextElements(element);
+			Assert.assertEquals(nextElements.size(), 1);
+		}
 	}
 
 }

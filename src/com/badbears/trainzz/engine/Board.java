@@ -16,8 +16,7 @@ public class Board implements IBoard {
 	}
 	
 	@Override
-	public void addTrain(ITrackElement element) {
-		ITrain train = new Train(element);
+	public void addTrain(ITrain train) {
 		trains.add(train);
 	}
 	
@@ -49,6 +48,16 @@ public class Board implements IBoard {
 	@Override
 	public void addTrackElement(ITrackElement element) {
 		this.elements.add(element);
+	}
+	
+	@Override
+	public void calculateTrainsPositions(int milis) {
+		for (ITrain train:trains) {
+			train.calculatePostion(milis);
+			if (train.getCurrentElementProgress() >= 100) {
+				train.goToNextElement(train.getCurrentElement(), 0);
+			}
+		}
 	}
 
 }
