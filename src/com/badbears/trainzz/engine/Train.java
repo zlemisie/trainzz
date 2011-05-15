@@ -1,8 +1,8 @@
-package engine;
+package com.badbears.trainzz.engine;
 
 import java.util.Random;
 
-public class Train {
+public class Train implements ITrain {
 	
 	int speed;
 	
