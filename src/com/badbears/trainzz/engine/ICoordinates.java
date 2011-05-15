@@ -10,4 +10,6 @@ public interface ICoordinates {
 
 	public abstract int getX();
 
+	public abstract double getDistance(ICoordinates anotherCoordinate);
+
 }

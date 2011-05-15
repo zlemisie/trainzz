@@ -54,6 +54,14 @@ public class Coordinates implements ICoordinates {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public double getDistance(ICoordinates anotherCoordinate) {
+		double a =  Math.abs(this.getX() - anotherCoordinate.getX());
+		double b = Math.abs(this.getY() - anotherCoordinate.getY());		
+		double result = Math.sqrt(a*a+b*b);
+		return result;
+	}
 
 	
 	

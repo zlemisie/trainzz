@@ -1,10 +1,22 @@
 package com.badbears.trainzz.engine;
 
-public class TrackElement implements ITrackElement {
+public abstract class TrackElement implements ITrackElement {
 
 	private ICoordinates startPoint;
 	private ICoordinates endPoint;
 	
+	public TrackElement(ICoordinates startPoint, ICoordinates endPoint) {
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+	}
+	
+	public TrackElement(int x1, int y1, int x2, int y2) {
+		ICoordinates startPoint = new Coordinates(x1, y1);
+		ICoordinates endPoint = new Coordinates(x2, y2);
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+	}
+		
 	@Override
 	public ICoordinates getStartPoint() {
 		return startPoint;

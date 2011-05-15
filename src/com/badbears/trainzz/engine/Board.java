@@ -2,16 +2,23 @@ package com.badbears.trainzz.engine;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Board implements IBoard {
 
-	int x,y;
-	ArrayList<Train> trains;
+	private List<ITrain> trains;
 	private Set<ITrackElement> elements;
 	
-	public void addTrain(ITrackElement element, ITrain train) {
-		
+	public Board() {
+		trains = new ArrayList<ITrain>();
+		elements = new HashSet<ITrackElement>();
+	}
+	
+	@Override
+	public void addTrain(ITrackElement element) {
+		ITrain train = new Train(element);
+		trains.add(train);
 	}
 	
 	@Override
@@ -38,7 +45,10 @@ public class Board implements IBoard {
 		}
 		return result;
 	}
-		
-	
-	
+
+	@Override
+	public void addTrackElement(ITrackElement element) {
+		this.elements.add(element);
+	}
+
 }
