@@ -1,7 +1,5 @@
 package com.badbears.trainzz.engine;
 
-import static org.junit.Assert.fail;
-
 import java.util.Set;
 
 import junit.framework.Assert;

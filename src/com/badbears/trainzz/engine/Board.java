@@ -44,6 +44,11 @@ public class Board implements IBoard {
 		}
 		return result;
 	}
+	
+	private ITrackElement findNextElement(ITrackElement element) {
+		Set<ITrackElement> nextElements = this.getNextElements(element);
+		return (ITrackElement) (nextElements.toArray())[0];
+	}
 
 	@Override
 	public void addTrackElement(ITrackElement element) {
@@ -55,7 +60,7 @@ public class Board implements IBoard {
 		for (ITrain train:trains) {
 			train.calculatePostion(milis);
 			if (train.getCurrentElementProgress() >= 100) {
-				train.goToNextElement(train.getCurrentElement(), 0);
+				train.goToNextElement(findNextElement(train.getCurrentElement()), 0);
 			}
 		}
 	}
