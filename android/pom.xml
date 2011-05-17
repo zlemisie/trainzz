@@ -8,4 +8,52 @@
   <groupId>com.badbears</groupId>
   <artifactId>android</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>apk</packaging>
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>2.2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android-test</artifactId>
+      <version>2.2.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  
+    <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>test/main/java</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>maven-android-plugin</artifactId>
+        <version>2.6.0</version>
+        <configuration>
+          <sdk>
+            <platform>8</platform>
+          </sdk>
+          <emulator>
+            <avd>em22</avd>
+          </emulator>
+          <deleteConflictingFiles>true</deleteConflictingFiles>
+          <undeployBeforeDeploy>true</undeployBeforeDeploy>
+        </configuration>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+        	<source>1.6</source>
+       		<target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
 </project>
