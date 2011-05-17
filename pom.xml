@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.badbears</groupId>
   <artifactId>trainzz</artifactId>
+  <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
   <dependencies>
@@ -12,5 +13,9 @@
   		<scope>test</scope>
   	</dependency>
   </dependencies>
+  <modules>
+  	<module>engine</module>
+  	<module>android</module>
+  </modules>
   
 </project>
