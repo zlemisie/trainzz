@@ -20,16 +20,18 @@
      own application, the package name must be changed from "com.example.*"
      to come from a domain that you own or have control over. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.snake">
-<uses-sdk></uses-sdk>
-    <application android:label="Snake on a Phone">
-      <activity android:name="Snake"
-        android:screenOrientation="portrait"
+    package="com.badbears.trainzz.android">
+	<uses-sdk android:minSdkVersion="4" />
+    <application android:label="Trainzz">
+        <activity android:name="HelloWorld"        android:screenOrientation="portrait"
         android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+          </activity>
     </application>
+      
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+        
 </manifest> 
