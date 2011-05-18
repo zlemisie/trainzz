@@ -62,9 +62,13 @@ public class Board implements IBoard {
 			if (train.getCurrentElementProgress() >= 100) {
 //				train.goToNextElement(findNextElement(train.getCurrentElement()), 0);
 				ITrackElement e = findNextElement(train.getCurrentElement());
-				train.goToNextElement(e, (train.getCurrentElementProgress()-100)*train.getCurrentElement().getLength()/e.getLength());
+				train.goToNextElement(e, progressCount(train, e));
 			}
 		}
+	}
+
+	private double progressCount(ITrain train, ITrackElement e) {
+		return (train.getCurrentElementProgress()-100)*train.getCurrentElement().getLength()/e.getLength();
 	}
 
 }
