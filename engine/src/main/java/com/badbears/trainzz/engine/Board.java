@@ -71,4 +71,9 @@ public class Board implements IBoard {
 		return (train.getCurrentElementProgress()-100)*train.getCurrentElement().getLength()/e.getLength();
 	}
 
+	@Override
+	public Set<ITrackElement> getElements() {
+		return elements;
+	}
+
 }

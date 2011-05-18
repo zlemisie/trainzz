@@ -23,6 +23,13 @@
       <version>2.2.1</version>
       <scope>provided</scope>
     </dependency>
+    
+    <dependency>
+    	<artifactId>engine</artifactId>
+    	<groupId>com.badbears</groupId>
+    	<version>0.0.1-SNAPSHOT</version>    
+    	<scope>provided</scope>
+    </dependency>
            
   </dependencies>
   

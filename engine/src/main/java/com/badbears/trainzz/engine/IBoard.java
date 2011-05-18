@@ -9,5 +9,6 @@ public interface IBoard {
 	public void addTrackElement(ITrackElement element);
 	public abstract void addTrain(ITrain train);
 	public abstract void calculateTrainsPositions(int milis);
+	public abstract Set<ITrackElement> getElements();
 	
 }
