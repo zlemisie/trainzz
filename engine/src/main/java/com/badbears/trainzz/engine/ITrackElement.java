@@ -6,5 +6,5 @@ public interface ITrackElement {
 	public ICoordinates getEndPoint();
 	public abstract boolean connects(ITrackElement anotherElement);
 	public double getLength();
-		
+	public ICoordinates calculateCoordinates(double progress);	
 }

@@ -11,4 +11,10 @@ public class StraightElement extends TrackElement {
 		return this.getStartPoint().getDistance(this.getEndPoint());
 	}
 
+	@Override
+	public ICoordinates calculateCoordinates(double progress) {
+		return new Coordinates((int)(this.getStartPoint().getX()+(this.getEndPoint().getX()-this.getStartPoint().getX())*progress/100),
+				(int)(this.getStartPoint().getY()+(this.getEndPoint().getY()-this.getStartPoint().getY())*progress/100));
+	
+	}
 }

@@ -71,5 +71,9 @@ public abstract class TrackElement implements ITrackElement {
 				}
 		return result;
 	}
+	
+	@Override
+	public abstract ICoordinates calculateCoordinates(double progress);
+	
 
 }
