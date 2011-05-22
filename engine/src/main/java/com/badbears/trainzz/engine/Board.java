@@ -45,9 +45,16 @@ public class Board implements IBoard {
 		return result;
 	}
 	
-	private ITrackElement findNextElement(ITrackElement element) {
-		Set<ITrackElement> nextElements = this.getNextElements(element);
-		return (ITrackElement) (nextElements.toArray())[0];
+	private ITrackElement findNextElement(ITrackElement currentElement, ITrackElement lastElement) {
+		ITrackElement nextElement = null;
+		Set<ITrackElement> nextElements = this.getNextElements(currentElement);
+		if (lastElement != null) {
+			nextElements.remove(lastElement);
+		}
+		if (!nextElements.isEmpty()) {
+			nextElement = (ITrackElement) (nextElements.toArray())[0];
+		}
+		return nextElement;
 	}
 
 	@Override
@@ -56,24 +63,34 @@ public class Board implements IBoard {
 	}
 	
 	@Override
-	public void calculateTrainsPositions(int milis) {
+	public void calculateTrainsPositions(float milis) {
 		for (ITrain train:trains) {
-			train.calculatePostion(milis);
-			if (train.getCurrentElementProgress() >= 100) {
-//				train.goToNextElement(findNextElement(train.getCurrentElement()), 0);
-				ITrackElement e = findNextElement(train.getCurrentElement());
-				train.goToNextElement(e, progressCount(train, e));
+			if (!train.isDestinationReached()) {
+				train.calculatePostion(milis);
+				if (train.getCurrentElementProgress() >= 100) {
+					ITrackElement nextElement = findNextElement(train.getCurrentElement(), train.getLastElement());
+					if (nextElement != null) {
+						train.goToNextElement(nextElement, nextElementProgressCount(train, nextElement));					
+					} else {
+						train.reachDestination();
+					}
+				}
 			}
 		}
 	}
 
-	private double progressCount(ITrain train, ITrackElement e) {
-		return (train.getCurrentElementProgress()-100)*train.getCurrentElement().getLength()/e.getLength();
+	private double nextElementProgressCount(ITrain train, ITrackElement nextElement) {
+		return (train.getCurrentElementProgress()-100)*train.getCurrentElement().getLength()/nextElement.getLength();
 	}
 
 	@Override
 	public Set<ITrackElement> getElements() {
 		return elements;
+	}
+
+	@Override
+	public List<ITrain> getTrains() {
+		return trains;
 	}
 
 }

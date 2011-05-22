@@ -5,32 +5,9 @@ import org.anddev.andengine.ui.activity.BaseGameActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/**
- * @author Nicolas Gramlich
- * @since 22:10:28 - 11.04.2010
- */
 public abstract class BaseExample extends BaseGameActivity {
-        // ===========================================================
-        // Constants
-        // ===========================================================
 
-        private static final int MENU_TRACE = Menu.FIRST;
-
-        // ===========================================================
-        // Fields
-        // ===========================================================
-
-        // ===========================================================
-        // Constructors
-        // ===========================================================
-
-        // ===========================================================
-        // Getter & Setter
-        // ===========================================================
-
-        // ===========================================================
-        // Methods for/from SuperClass/Interfaces
-        // ===========================================================
+		private static final int MENU_TRACE = Menu.FIRST;
 
         @Override
         public boolean onCreateOptionsMenu(final Menu pMenu) {
@@ -59,11 +36,4 @@ public abstract class BaseExample extends BaseGameActivity {
                 }
         }
 
-        // ===========================================================
-        // Methods
-        // ===========================================================
-
-        // ===========================================================
-        // Inner and Anonymous Classes
-        // ===========================================================
 }

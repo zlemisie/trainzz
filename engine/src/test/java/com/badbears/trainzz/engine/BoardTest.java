@@ -29,7 +29,7 @@ public class BoardTest {
 	public void testAddTrain() {
 		Set<ITrackElement> elements = board.getEndElements();
 		for (ITrackElement element:elements) {
-			ITrain train = new Train(element);
+			ITrain train = new Train(element, 1000, ConnectionType.START_POINT);
 			board.addTrain(train);
 		}
 

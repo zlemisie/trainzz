@@ -26,6 +26,16 @@ public abstract class TrackElement implements ITrackElement {
 	public ICoordinates getEndPoint() {
 		return endPoint;
 	}
+	
+	public ICoordinates getPoint(ConnectionType connectionType) {
+		ICoordinates result = null;
+		if (connectionType == ConnectionType.START_POINT) {
+			result = startPoint; 
+		} else if (connectionType == ConnectionType.END_POINT) {
+			result = endPoint; 
+		}
+		return result;
+	}
 
 	@Override
 	public int hashCode() {
@@ -62,13 +72,22 @@ public abstract class TrackElement implements ITrackElement {
 	
 	@Override
 	public boolean connects(ITrackElement anotherElement) {
-		boolean result = false;
-		if (anotherElement.getStartPoint().equals(this.getStartPoint())
-				|| anotherElement.getStartPoint().equals(this.getEndPoint())
-				|| anotherElement.getEndPoint().equals(this.getStartPoint())
-				|| anotherElement.getEndPoint().equals(this.getEndPoint())) {
-					result = true;
-				}
+		boolean result = getConnectionType(anotherElement) != null;
+		return result;
+	}
+	
+	@Override
+	public ConnectionType getConnectionType(ITrackElement anotherElement) {
+		ConnectionType result = null;
+		if (anotherElement != null) {
+			if (anotherElement.getStartPoint().equals(this.getStartPoint())
+					|| anotherElement.getEndPoint().equals(this.getStartPoint())) {
+				result = ConnectionType.START_POINT;
+			} else if (anotherElement.getStartPoint().equals(this.getEndPoint())
+					|| anotherElement.getEndPoint().equals(this.getEndPoint())) {
+				result = ConnectionType.END_POINT;
+			}
+		}
 		return result;
 	}
 	

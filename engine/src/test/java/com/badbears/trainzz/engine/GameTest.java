@@ -18,7 +18,7 @@ public class GameTest {
 		ITrackElement element2 = new StraightElement(10, 10, 10, 30);
 		board.addTrackElement(element2);
 		
-		train = new Train(element);
+		train = new Train(element, 1000, ConnectionType.START_POINT);
 		board.addTrain(train );
 	}
 
