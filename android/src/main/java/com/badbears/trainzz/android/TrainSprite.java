@@ -10,10 +10,13 @@ import com.badbears.trainzz.engine.ITrain;
 public class TrainSprite extends Sprite {
 
 	private ITrain train;
+	private int width = 10;
+	private int height = 10;
 	
 	public TrainSprite(ITrain train, TextureRegion textureRegion) {
-//		super(train.calculateCoordinates().getX(), train.calculateCoordinates().getY(), 1, 1, textureRegion);
-		super(100, 100, textureRegion);
+		super(0, 0, textureRegion);
+	  	this.setHeight(height);
+	  	this.setWidth(width);
 		this.train = train;
 	}
 	
@@ -31,7 +34,7 @@ public class TrainSprite extends Sprite {
 
 	          if (!train.isDestinationReached()) {
 	        	  ICoordinates coordinates = train.calculateCoordinates();
-	        	  this.setPosition(coordinates.getX(), coordinates.getY());
+	        	  this.setPosition(coordinates.getX()-(width/2), coordinates.getY()-(height/2));
 	          } else {
 	        	  this.setVisible(false);
 	        	  this.clearUpdateHandlers();
