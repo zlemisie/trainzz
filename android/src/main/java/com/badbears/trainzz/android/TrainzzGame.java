@@ -93,7 +93,7 @@ public class TrainzzGame extends BaseExample {
 
 		private IBoard createBoard() {
 			IBoard board = new Board();
-			ITrackElement element = new StraightElement(1, 1, 100, 100);
+			ITrackElement element = new StraightElement(0, 50, 100, 100);
 			board.addTrackElement(element);
 			ITrackElement element2 = new StraightElement(100, 100, 100, 300);
 			board.addTrackElement(element2);
@@ -104,10 +104,23 @@ public class TrainzzGame extends BaseExample {
 			ITrackElement element5 = new StraightElement(150, 150, 320, 400);
 			board.addTrackElement(element5);
 			
+			ITrackElement element6 = new StraightElement(0, 480, 100, 380);
+			board.addTrackElement(element6);
+			ITrackElement element7 = new StraightElement(100, 380, 150, 400);
+			board.addTrackElement(element7);
+			ITrackElement element8 = new StraightElement(150, 400, 200, 400);
+			board.addTrackElement(element8);
+			ITrackElement element9 = new StraightElement(200, 400, 300, 400);
+			board.addTrackElement(element9);
+			ITrackElement element10 = new StraightElement(300, 400, 320, 420);
+			board.addTrackElement(element10);
+			
+			
+			
 			ITrain train = new Train(element, 3500, ConnectionType.START_POINT);
 			board.addTrain(train);
 			
-			ITrain train2 = new Train(element5, 2500, ConnectionType.END_POINT);
+			ITrain train2 = new Train(element6, 2500, ConnectionType.START_POINT);
 			board.addTrain(train2);
 			
 			return board;
