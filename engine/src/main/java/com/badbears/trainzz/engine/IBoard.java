@@ -12,5 +12,8 @@ public interface IBoard {
 	public abstract void calculateTrainsPositions(float milis);
 	public abstract Set<ITrackElement> getElements();
 	public abstract List<ITrain> getTrains();
+	public abstract List<ITrain> detectColllisions();
+	public abstract ITrackElement drawEndElement();
+	public abstract ITrain addTrain();
 	
 }

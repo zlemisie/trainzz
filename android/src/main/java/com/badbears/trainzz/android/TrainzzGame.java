@@ -78,6 +78,13 @@ public class TrainzzGame extends BaseExample {
 	                @Override
 	                public void onUpdate(float pSecondsElapsed) {
 	                        board.calculateTrainsPositions(pSecondsElapsed);
+	                        board.detectColllisions();
+	                        if (board.getTrains().size() < 4) {
+	                        	ITrain train = board.addTrain();
+	                        	TrainSprite trainSprite = new TrainSprite(train, myTextureRegion);
+	                      	  	scene.getLastChild().attachChild(trainSprite);
+	                      	  	scene.registerTouchArea(trainSprite);
+	                        }
 	                }
 
 					@Override
@@ -118,10 +125,13 @@ public class TrainzzGame extends BaseExample {
 			
 			
 			ITrain train = new Train(element, 3500, ConnectionType.START_POINT);
-			board.addTrain(train);
+//			board.addTrain(train);
 			
-			ITrain train2 = new Train(element6, 2500, ConnectionType.START_POINT);
-			board.addTrain(train2);
+			ITrain train2 = new Train(element5, 2500, ConnectionType.END_POINT);
+//			board.addTrain(train2);
+
+//			board.addTrain();
+//			board.addTrain();
 			
 			return board;
 		}

@@ -40,6 +40,16 @@ public class BoardTest {
 		Set<ITrackElement> elements = board.getEndElements();
 		Assert.assertEquals(elements.size(), 2);
 	}
+	
+	@Test
+	public void testAddTrainEnywhere() {
+		ITrain train1 = board.addTrain();
+		ITrain train2 =	board.addTrain();
+		Assert.assertFalse(train1.getCurrentElement().equals(train2.getCurrentElement()));
+//		ITrain train3 = board.addTrain();
+//		ITrain train4 =	board.addTrain();
+//		Assert.assertFalse(train3.getCurrentElement().equals(train4.getCurrentElement()));
+	}
 
 	@Test
 	public void testGetNextElements() {

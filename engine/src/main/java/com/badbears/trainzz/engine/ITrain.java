@@ -18,4 +18,8 @@ public interface ITrain {
 
 	public abstract void reachDestination();
 
+	public abstract void collide();
+
+	public abstract boolean isCollided();
+
 }
