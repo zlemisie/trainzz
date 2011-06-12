@@ -124,10 +124,10 @@ public class TrainzzGame extends BaseExample {
 			
 			
 			
-			ITrain train = new Train(element, 3500, ConnectionType.START_POINT);
+//			ITrain train = new Train(element, 3500, ConnectionType.START_POINT);
 //			board.addTrain(train);
 			
-			ITrain train2 = new Train(element5, 2500, ConnectionType.END_POINT);
+//			ITrain train2 = new Train(element5, 2500, ConnectionType.END_POINT);
 //			board.addTrain(train2);
 
 //			board.addTrain();
