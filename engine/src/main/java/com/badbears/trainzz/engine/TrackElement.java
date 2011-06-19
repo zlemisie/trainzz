@@ -93,6 +93,12 @@ public abstract class TrackElement implements ITrackElement {
 	
 	@Override
 	public abstract ICoordinates calculateCoordinates(double progress);
+
+	@Override
+	public String toString() {
+		return "TrackElement [startPoint=" + startPoint + ", endPoint="
+				+ endPoint + "]";
+	}
 	
 
 }

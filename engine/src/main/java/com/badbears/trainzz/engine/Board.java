@@ -52,7 +52,7 @@ public class Board implements IBoard {
 	
 	@Override
 	public List<ITrain> detectColllisions() {
-		return collisionDetector.detectColllisions(trains);
+		return collisionDetector.detectCollisions(trains);
 	}
 
 	@Override

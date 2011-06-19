@@ -1,7 +1,9 @@
 package com.badbears.trainzz.engine.strategies;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -25,7 +27,7 @@ public class AddTrainStrategy implements IAddTrainStrategy {
 		if (startElement != null) {
 			Set<ITrackElement> nextElements = elementFinderStrategy.getNextElements(startElement, elements);
 			ConnectionType connectionType = startElement.getConnectionType((ITrackElement) nextElements.toArray()[0]);
-			train = new Train(drawEndElement(elements, trains), 2500, connectionType);
+			train = new Train(startElement, 2500, connectionType.reverse());
 		}
 		return train;
 	}
@@ -45,14 +47,16 @@ public class AddTrainStrategy implements IAddTrainStrategy {
 	private Set<ITrackElement> getEndElementsWithNoTrainsOnIt(Iterable<ITrackElement> elements, Iterable<ITrain> trains) {
 		Set<ITrackElement> endElements = this.getEndElements(elements);
 		Iterator<ITrackElement> elementIterator = endElements.iterator();
+		List<ITrackElement> elementsToRemove = new ArrayList<ITrackElement>();
 		while (elementIterator.hasNext()) {
 			ITrackElement endElement =  elementIterator.next();
 			for (ITrain train:trains) {
 				if (train.getCurrentElement().equals(endElement)) {
-					elementIterator.remove();
+					elementsToRemove.add(endElement);
 				}
 			}
 		}
+		endElements.removeAll(elementsToRemove);
 		return endElements;
 	}
 

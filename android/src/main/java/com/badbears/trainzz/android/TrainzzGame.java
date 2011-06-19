@@ -83,7 +83,7 @@ public class TrainzzGame extends BaseExample {
 	                        	ITrain train = board.addTrain();
 	                        	TrainSprite trainSprite = new TrainSprite(train, myTextureRegion);
 	                      	  	scene.getLastChild().attachChild(trainSprite);
-	                      	  	scene.registerTouchArea(trainSprite);
+//	                      	  	scene.registerTouchArea(trainSprite);
 	                        }
 	                }
 
@@ -121,18 +121,7 @@ public class TrainzzGame extends BaseExample {
 			board.addTrackElement(element9);
 			ITrackElement element10 = new StraightElement(300, 400, 320, 420);
 			board.addTrackElement(element10);
-			
-			
-			
-//			ITrain train = new Train(element, 3500, ConnectionType.START_POINT);
-//			board.addTrain(train);
-			
-//			ITrain train2 = new Train(element5, 2500, ConnectionType.END_POINT);
-//			board.addTrain(train2);
-
-//			board.addTrain();
-//			board.addTrain();
-			
+						
 			return board;
 		}
 

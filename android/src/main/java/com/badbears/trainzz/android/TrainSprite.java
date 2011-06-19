@@ -33,7 +33,7 @@ public class TrainSprite extends Sprite {
 	          super.onManagedUpdate(pSecondsElapsed);
 
 	          if (!train.isDestinationReached()
-	        		  && !train.isCollided()) {
+	        		  &&  !train.isCollided()) {
 	        	  ICoordinates coordinates = train.calculateCoordinates();
 	        	  this.setPosition(coordinates.getX()-(width/2), coordinates.getY()-(height/2));
 	          } else {

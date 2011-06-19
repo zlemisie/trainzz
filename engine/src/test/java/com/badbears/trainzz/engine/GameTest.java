@@ -34,7 +34,7 @@ public class GameTest {
 			long endTime =System.currentTimeMillis();
 			int dTime = (int)(endTime - startTime);
 			board.calculateTrainsPositions(dTime);
-			System.out.println(train.getCurrentElementProgress());
+//			System.out.println(train.getCurrentElementProgress());
 		}
 	}
 

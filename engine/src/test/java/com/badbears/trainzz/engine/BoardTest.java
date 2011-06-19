@@ -26,19 +26,9 @@ public class BoardTest {
 	}
 
 	@Test
-	public void testAddTrain() {
-//		Set<ITrackElement> elements = board.getEndElements();
-//		for (ITrackElement element:elements) {
-//			ITrain train = new Train(element, 1000, ConnectionType.START_POINT);
-//			board.addTrain(train);
-//		}
-
-	}
-
-	@Test
 	public void testGetEndElements() {
-//		Set<ITrackElement> elements = board.getEndElements();
-//		Assert.assertEquals(elements.size(), 2);
+		Set<ITrackElement> elements = board.getElements();
+		Assert.assertEquals(elements.size(), 2);
 	}
 	
 	@Test
@@ -46,18 +36,6 @@ public class BoardTest {
 		ITrain train1 = board.addTrain();
 		ITrain train2 =	board.addTrain();
 		Assert.assertFalse(train1.getCurrentElement().equals(train2.getCurrentElement()));
-//		ITrain train3 = board.addTrain();
-//		ITrain train4 =	board.addTrain();
-//		Assert.assertFalse(train3.getCurrentElement().equals(train4.getCurrentElement()));
-	}
-
-	@Test
-	public void testGetNextElements() {
-//		Set<ITrackElement> elements = board.getEndElements();
-//		for (ITrackElement element:elements) {
-//			Set<ITrackElement> nextElements = board.getNextElements(element);
-//			Assert.assertEquals(nextElements.size(), 1);
-//		}
 	}
 
 }

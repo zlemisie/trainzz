@@ -63,6 +63,11 @@ public class Coordinates implements ICoordinates {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "Coordinates [x=" + x + ", y=" + y + "]";
+	}
+
 	
 	
 }

@@ -6,6 +6,6 @@ import com.badbears.trainzz.engine.ITrain;
 
 public interface ICollisionDetectorStrategy {
 
-	List<ITrain> detectColllisions(List<ITrain> trains);
+	List<ITrain> detectCollisions(List<ITrain> trains);
 
 }
