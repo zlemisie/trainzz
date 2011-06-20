@@ -1,4 +1,7 @@
 package com.badbears.trainzz.android;
+import java.util.List;
+import java.util.Set;
+
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.handler.IUpdateHandler;
@@ -15,12 +18,10 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.texture.region.TextureRegionFactory;
 
 import com.badbears.trainzz.engine.Board;
-import com.badbears.trainzz.engine.ConnectionType;
 import com.badbears.trainzz.engine.IBoard;
 import com.badbears.trainzz.engine.ITrackElement;
 import com.badbears.trainzz.engine.ITrain;
 import com.badbears.trainzz.engine.StraightElement;
-import com.badbears.trainzz.engine.Train;
 
 
 public class TrainzzGame extends BaseExample {
@@ -55,48 +56,55 @@ public class TrainzzGame extends BaseExample {
 
                 final IBoard board = createBoard();
                 
-                for (ITrackElement element:board.getElements()) {
-
-                	final Line line = new Line(
-                			element.getStartPoint().getX(), 
-                			element.getStartPoint().getY(), 
-                			element.getEndPoint().getX(), 
-                			element.getEndPoint().getY(), 5);
-                	
-                    line.setColor(1.0f, 1.0f, 1.0f);
-                    scene.getLastChild().attachChild(line);
-                }
-                
-                for (ITrain train:board.getTrains()) {
-                	  TrainSprite trainSprite = new TrainSprite(train, this.myTextureRegion);
-                	  scene.getLastChild().attachChild(trainSprite);
-                	  scene.registerTouchArea(trainSprite);
-                }
-                
-	            scene.registerUpdateHandler(new IUpdateHandler() {
-	            	 
-	                @Override
-	                public void onUpdate(float pSecondsElapsed) {
-	                        board.calculateTrainsPositions(pSecondsElapsed);
-	                        board.detectColllisions();
-	                        if (board.getTrains().size() < 4) {
-	                        	ITrain train = board.addTrain();
-	                        	TrainSprite trainSprite = new TrainSprite(train, myTextureRegion);
-	                      	  	scene.getLastChild().attachChild(trainSprite);
-//	                      	  	scene.registerTouchArea(trainSprite);
-	                        }
-	                }
-
-					@Override
-					public void reset() { 
-
-					}
-					
-	            });
-	            
+                drawTrackElements(scene, board.getElements());
+                drawTrains(scene, board.getTrains());
+	            registerUpdateHandlers(scene, board);
 
                 return scene;
         }
+
+		private void registerUpdateHandlers(final Scene scene,
+			final IBoard board) {
+				scene.registerUpdateHandler(new IUpdateHandler() {
+				 
+			    @Override
+			    public void onUpdate(float pSecondsElapsed) {
+			            ITrain train = board.onUpdate(pSecondsElapsed);
+			        	if (train != null) {
+			        		TrainSprite trainSprite = new TrainSprite(train, myTextureRegion);
+			      	  		scene.getLastChild().attachChild(trainSprite);
+			        	}
+			    }
+
+				@Override
+				public void reset() { 
+
+				}
+				
+			});
+		}
+
+		private void drawTrains(final Scene scene, final List<ITrain> trains) {
+			for (ITrain train:trains) {
+				  TrainSprite trainSprite = new TrainSprite(train, this.myTextureRegion);
+				  scene.getLastChild().attachChild(trainSprite);
+				  scene.registerTouchArea(trainSprite);
+			}
+		}
+
+		private void drawTrackElements(final Scene scene, final Set<ITrackElement> trackElements) {
+			for (ITrackElement element:trackElements) {
+
+				final Line line = new Line(
+						element.getStartPoint().getX(), 
+						element.getStartPoint().getY(), 
+						element.getEndPoint().getX(), 
+						element.getEndPoint().getY(), 5);
+				
+			    line.setColor(1.0f, 1.0f, 1.0f);
+			    scene.getLastChild().attachChild(line);
+			}
+		}
 
 		private IBoard createBoard() {
 			IBoard board = new Board();
@@ -108,8 +116,15 @@ public class TrainzzGame extends BaseExample {
 			board.addTrackElement(element3);
 			ITrackElement element4 = new StraightElement(250, 50, 150, 150);
 			board.addTrackElement(element4);
+			
+			ITrackElement element4a = new StraightElement(150, 150, 250, 75);
+			board.addTrackElement(element4a);
+			
 			ITrackElement element5 = new StraightElement(150, 150, 320, 400);
 			board.addTrackElement(element5);
+			
+			ITrackElement element5a = new StraightElement(250, 75, 320, 50);
+			board.addTrackElement(element5a);
 			
 			ITrackElement element6 = new StraightElement(0, 480, 100, 380);
 			board.addTrackElement(element6);

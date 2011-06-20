@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.badbears.trainzz.engine.strategies.AddTrainStrategy;
-import com.badbears.trainzz.engine.strategies.CollisionDetectorStrategy;
+import com.badbears.trainzz.engine.strategies.CollisionDetectorStrategy2;
 import com.badbears.trainzz.engine.strategies.IAddTrainStrategy;
 import com.badbears.trainzz.engine.strategies.ICollisionDetectorStrategy;
 
@@ -22,8 +22,20 @@ public class Board implements IBoard {
 		trains = new ArrayList<ITrain>();
 		elements = new HashSet<ITrackElement>();
 		addTrainStrategy = new AddTrainStrategy();
-		collisionDetector = new CollisionDetectorStrategy();
+		collisionDetector = new CollisionDetectorStrategy2();
 		trainsPositionCalculator = new TrainsPositionCalculator();
+	}
+	
+	@Override
+	public ITrain onUpdate(float pSecondsElapsed) {
+	    calculateTrainsPositions(pSecondsElapsed);
+	    List<ITrain> trainsCollided = detectColllisions();
+
+	    ITrain trainAdded = null;
+	    if (getTrains().size() < 6) {
+	    	trainAdded = addTrain();
+	    }
+	    return trainAdded;
 	}
 	
 	@Override
@@ -46,8 +58,8 @@ public class Board implements IBoard {
 	}
 	
 	@Override
-	public void calculateTrainsPositions(float milis) {
-		trainsPositionCalculator.calculateTrainsPositions(milis, trains, elements);
+	public void calculateTrainsPositions(float pSecondsElapsed) {
+		trainsPositionCalculator.calculateTrainsPositions(pSecondsElapsed, trains, elements);
 	}
 	
 	@Override

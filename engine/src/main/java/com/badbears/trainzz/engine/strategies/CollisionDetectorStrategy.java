@@ -24,6 +24,7 @@ public class CollisionDetectorStrategy implements ICollisionDetectorStrategy {
 						
 						collidedTrains.add(outerTrain);
 						outerTrain.collide();
+						System.out.println("Collisiont!");
 					}
 				}
 			}

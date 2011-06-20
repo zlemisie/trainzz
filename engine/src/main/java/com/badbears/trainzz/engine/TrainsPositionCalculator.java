@@ -14,12 +14,12 @@ public class TrainsPositionCalculator implements ITrainsPositionCalculator {
 	}
 	
 	@Override
-	public void calculateTrainsPositions(float milis, Iterable<ITrain> trains, Iterable<ITrackElement> elements) {
+	public void calculateTrainsPositions(float pSecondsElapsed, Iterable<ITrain> trains, Iterable<ITrackElement> elements) {
 		Iterator<ITrain> trainsIterator = trains.iterator();
 		while (trainsIterator.hasNext()) {
 			ITrain train = trainsIterator.next();
 			if (!train.isDestinationReached()) {
-				train.calculatePostion(milis);
+				train.calculatePostion(pSecondsElapsed);
 				if (train.getCurrentElementProgress() >= 100) {
 					ITrackElement nextElement = elementFinderStrategy.findNextElement(train.getCurrentElement(), train.getLastElement(), elements);
 					if (nextElement != null) {

@@ -14,9 +14,11 @@ import com.badbears.trainzz.engine.Train;
 
 public class AddTrainStrategy implements IAddTrainStrategy {
 
-	IElementFinderStartegy elementFinderStrategy;
+	private IElementFinderStartegy elementFinderStrategy;
+	private Random random;
 	
 	public AddTrainStrategy() {
+		random = new Random();
 		elementFinderStrategy = new ElementFinderStartegy();
 	}
 	
@@ -61,10 +63,13 @@ public class AddTrainStrategy implements IAddTrainStrategy {
 	}
 
 	private ITrackElement drawEndElement(Iterable<ITrackElement> elements, Iterable<ITrain> trains) {
-		Random random = new Random();
+		ITrackElement result = null;
 		Set<ITrackElement> endElements = getEndElementsWithNoTrainsOnIt(elements, trains);
-		Integer drawedElementNumber = random.nextInt(endElements.size());
-		return (ITrackElement) endElements.toArray()[drawedElementNumber];
+		if (endElements.size() > 0) {
+			Integer drawedElementNumber = random.nextInt(endElements.size());
+			result = (ITrackElement) endElements.toArray()[drawedElementNumber];
+		}
+		return result;
 	}
 	
 }

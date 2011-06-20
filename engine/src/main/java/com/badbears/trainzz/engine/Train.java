@@ -1,6 +1,5 @@
 package com.badbears.trainzz.engine;
 
-import java.util.Random;
 
 public class Train implements ITrain {
 
@@ -17,12 +16,6 @@ public class Train implements ITrain {
 		this.currentElementProgress = 0;
 		this.speed = speed;
 		this.currentElementFromDirection = startPoint;
-//		setRandomSpeed();
-	}
-
-	private void setRandomSpeed() {
-		Random r = new Random();
-		speed = r.nextInt(10) + 1;
 	}
 
 	@Override
@@ -36,8 +29,8 @@ public class Train implements ITrain {
 	}
 
 	@Override
-	public void calculatePostion(float milis) {
-		double currentProgress = speed * milis / currentElement.getLength();
+	public void calculatePostion(float pSecondsElapsed) {
+		double currentProgress = speed * pSecondsElapsed / currentElement.getLength();
 		currentElementProgress = currentElementProgress + currentProgress ;
 	}
 	
@@ -86,57 +79,6 @@ public class Train implements ITrain {
 	public boolean isDestinationReached() {
 		return destinationReached;
 	}
-
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result
-//				+ ((currentElement == null) ? 0 : currentElement.hashCode());
-//		result = prime
-//				* result
-//				+ ((currentElementFromDirection == null) ? 0
-//						: currentElementFromDirection.hashCode());
-//		long temp;
-//		temp = Double.doubleToLongBits(currentElementProgress);
-//		result = prime * result + (int) (temp ^ (temp >>> 32));
-//		result = prime * result + (destinationReached ? 1231 : 1237);
-//		result = prime * result
-//				+ ((lastElement == null) ? 0 : lastElement.hashCode());
-//		result = prime * result + speed;
-//		return result;
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Train other = (Train) obj;
-//		if (currentElement == null) {
-//			if (other.currentElement != null)
-//				return false;
-//		} else if (!currentElement.equals(other.currentElement))
-//			return false;
-//		if (currentElementFromDirection != other.currentElementFromDirection)
-//			return false;
-//		if (Double.doubleToLongBits(currentElementProgress) != Double
-//				.doubleToLongBits(other.currentElementProgress))
-//			return false;
-//		if (destinationReached != other.destinationReached)
-//			return false;
-//		if (lastElement == null) {
-//			if (other.lastElement != null)
-//				return false;
-//		} else if (!lastElement.equals(other.lastElement))
-//			return false;
-//		if (speed != other.speed)
-//			return false;
-//		return true;
-//	}
 
 	@Override
 	public boolean isCollided() {

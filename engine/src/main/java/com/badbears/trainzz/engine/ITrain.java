@@ -6,7 +6,7 @@ public interface ITrain {
 
 	public abstract ITrackElement getCurrentElement();
 
-	public abstract void calculatePostion(float milis);
+	public abstract void calculatePostion(float pSecondsElapsed);
 
 	public abstract void goToNextElement(ITrackElement nextElement, double nextElementProgress);
 
