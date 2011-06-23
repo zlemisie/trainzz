@@ -5,6 +5,10 @@ public class SwitchPair implements ISwitchPair {
 	private ITrackElement from;
 	private ITrackElement to;
 	
+	public SwitchPair() {
+		
+	}
+	
 	public SwitchPair(ITrackElement from, ITrackElement to) {
 		this.from = from;
 		this.to = to;

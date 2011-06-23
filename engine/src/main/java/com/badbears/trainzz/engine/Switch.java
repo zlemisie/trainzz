@@ -1,49 +1,47 @@
 package com.badbears.trainzz.engine;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Switch implements ITrackElement {
 
-	Set<ISwitchPair> switchPairs;
+	private ICoordinates location;
+	private Set<ISwitchPair> switchPairs;
 	
-	public Switch(Set<ISwitchPair> switchPairs) {
-		this.switchPairs = switchPairs;
+	public Switch(int x, int y, ISwitchPair... switchPairs) {
+		this.location = new Coordinates(x, y);
+		this.switchPairs = new HashSet<ISwitchPair>(Arrays.asList(new SwitchPair()));
 	}
 	
 	@Override
 	public ICoordinates getStartPoint() {
-		// TODO Auto-generated method stub
-		return null;
+		return location;
 	}
 
 	@Override
 	public ICoordinates getEndPoint() {
-		// TODO Auto-generated method stub
-		return null;
+		return location;
 	}
 
 	@Override
 	public boolean connects(ITrackElement anotherElement) {
-		// TODO Auto-generated method stub
-		return false;
+		return anotherElement.getConnectionType(this) != null;
 	}
 
 	@Override
 	public double getLength() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public ICoordinates calculateCoordinates(double progress) {
-		// TODO Auto-generated method stub
-		return null;
+		return location;
 	}
 
 	@Override
 	public ConnectionType getConnectionType(ITrackElement anotherElement) {
-		// TODO Auto-generated method stub
-		return null;
+		return anotherElement.getConnectionType(this);
 	}
 
 }

@@ -22,6 +22,7 @@ import com.badbears.trainzz.engine.IBoard;
 import com.badbears.trainzz.engine.ITrackElement;
 import com.badbears.trainzz.engine.ITrain;
 import com.badbears.trainzz.engine.StraightElement;
+import com.badbears.trainzz.engine.Switch;
 
 
 public class TrainzzGame extends BaseExample {
@@ -30,8 +31,10 @@ public class TrainzzGame extends BaseExample {
         private static final int CAMERA_HEIGHT = 480;
       
         private Camera mCamera;
-        private Texture mTexture;
-        private TextureRegion myTextureRegion;
+        private Texture mGreenTexture;
+        private Texture mBlueTexture;
+        private TextureRegion myGreenTextureRegion;
+        private TextureRegion myBlueTextureRegion;
 
         @Override
         public Engine onLoadEngine() {
@@ -41,10 +44,13 @@ public class TrainzzGame extends BaseExample {
 
         @Override
         public void onLoadResources() {
-                this.mTexture = new Texture(512, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+                this.mGreenTexture = new Texture(512, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+                this.mBlueTexture = new Texture(512, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
                 TextureRegionFactory.setAssetBasePath("gfx/");
-                this.myTextureRegion = TextureRegionFactory.createFromAsset(this.mTexture, this, "greenstar.png", 0, 0);
-                this.mEngine.getTextureManager().loadTexture(this.mTexture);
+                this.myGreenTextureRegion = TextureRegionFactory.createFromAsset(this.mGreenTexture, this, "greenstar.png", 0, 0);
+                this.myBlueTextureRegion = TextureRegionFactory.createFromAsset(this.mBlueTexture, this, "bluestar.png", 0, 0);
+                this.mEngine.getTextureManager().loadTexture(this.mGreenTexture);
+                this.mEngine.getTextureManager().loadTexture(this.mBlueTexture);
         }
 
         @Override
@@ -71,7 +77,7 @@ public class TrainzzGame extends BaseExample {
 			    public void onUpdate(float pSecondsElapsed) {
 			            ITrain train = board.onUpdate(pSecondsElapsed);
 			        	if (train != null) {
-			        		TrainSprite trainSprite = new TrainSprite(train, myTextureRegion);
+			        		TrainSprite trainSprite = new TrainSprite(train, myGreenTextureRegion);
 			      	  		scene.getLastChild().attachChild(trainSprite);
 			        	}
 			    }
@@ -86,7 +92,7 @@ public class TrainzzGame extends BaseExample {
 
 		private void drawTrains(final Scene scene, final List<ITrain> trains) {
 			for (ITrain train:trains) {
-				  TrainSprite trainSprite = new TrainSprite(train, this.myTextureRegion);
+				  TrainSprite trainSprite = new TrainSprite(train, this.myGreenTextureRegion);
 				  scene.getLastChild().attachChild(trainSprite);
 				  scene.registerTouchArea(trainSprite);
 			}
@@ -94,7 +100,6 @@ public class TrainzzGame extends BaseExample {
 
 		private void drawTrackElements(final Scene scene, final Set<ITrackElement> trackElements) {
 			for (ITrackElement element:trackElements) {
-
 				final Line line = new Line(
 						element.getStartPoint().getX(), 
 						element.getStartPoint().getY(), 
@@ -103,6 +108,16 @@ public class TrainzzGame extends BaseExample {
 				
 			    line.setColor(1.0f, 1.0f, 1.0f);
 			    scene.getLastChild().attachChild(line);
+			}
+			
+			for (ITrackElement element:trackElements) {
+				// TODO_MSL refactor!
+				if (element instanceof Switch) {
+					SwitchSprite switchSprite = new SwitchSprite(element, this.myBlueTextureRegion);
+					scene.getLastChild().attachChild(switchSprite);
+					scene.registerTouchArea(switchSprite);
+					scene.registerUpdateHandler(switchSprite);
+				}
 			}
 		}
 
@@ -126,6 +141,10 @@ public class TrainzzGame extends BaseExample {
 			board.addTrackElement(e5);
 			ITrackElement e6 = new StraightElement(80, 200, 120, 300);
 			board.addTrackElement(e6);
+			
+			ITrackElement s1 = new Switch(80, 200);
+			board.addTrackElement(s1);
+			
 			ITrackElement e7 = new StraightElement(240, 200, 200, 300);
 			board.addTrackElement(e7);
 			ITrackElement e8 = new StraightElement(120, 300, 160, 400);
