@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import com.badbears.trainzz.engine.ConnectionType;
 import com.badbears.trainzz.engine.ITrackElement;
 
 public class ElementFinderStartegy implements IElementFinderStartegy {
@@ -32,7 +33,16 @@ public class ElementFinderStartegy implements IElementFinderStartegy {
 		Set<ITrackElement> nextElements = this.getNextElements(currentElement, elements);
 		if (lastElement != null) {
 			nextElements.remove(lastElement);
+			Set<ITrackElement> elementsToRemove = new HashSet<ITrackElement>();
+			ConnectionType connectionType = currentElement.getConnectionType(lastElement).reverse();
+			for (ITrackElement trackElement:nextElements) {
+				if (currentElement.getConnectionType(trackElement) != connectionType) {
+					elementsToRemove.add(trackElement);
+				}
+			}
+			nextElements.removeAll(elementsToRemove);
 		}
+
 		if (!nextElements.isEmpty()) {
 			nextElement = (ITrackElement) (nextElements.toArray())[random.nextInt(nextElements.size())];
 		}

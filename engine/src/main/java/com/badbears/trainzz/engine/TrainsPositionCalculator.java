@@ -1,6 +1,8 @@
 package com.badbears.trainzz.engine;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.badbears.trainzz.engine.strategies.ElementFinderStartegy;
 import com.badbears.trainzz.engine.strategies.IElementFinderStartegy;
@@ -14,7 +16,8 @@ public class TrainsPositionCalculator implements ITrainsPositionCalculator {
 	}
 	
 	@Override
-	public void calculateTrainsPositions(float pSecondsElapsed, Iterable<ITrain> trains, Iterable<ITrackElement> elements) {
+	public List<ITrain> calculateTrainsPositions(float pSecondsElapsed, Iterable<ITrain> trains, Iterable<ITrackElement> elements) {
+		List<ITrain> trainReached = new ArrayList<ITrain>();
 		Iterator<ITrain> trainsIterator = trains.iterator();
 		while (trainsIterator.hasNext()) {
 			ITrain train = trainsIterator.next();
@@ -27,10 +30,12 @@ public class TrainsPositionCalculator implements ITrainsPositionCalculator {
 					} else {
 						train.reachDestination();
 						trainsIterator.remove();
+						trainReached.add(train);
 					}
 				}
 			}
 		}
+		return trainReached;
 	}
 	
 	private double nextElementProgressCount(ITrain train, ITrackElement nextElement) {

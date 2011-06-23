@@ -28,7 +28,7 @@ public class Board implements IBoard {
 	
 	@Override
 	public ITrain onUpdate(float pSecondsElapsed) {
-	    calculateTrainsPositions(pSecondsElapsed);
+		List<ITrain> trainsReached  = calculateTrainsPositions(pSecondsElapsed);
 	    List<ITrain> trainsCollided = detectColllisions();
 
 	    ITrain trainAdded = null;
@@ -58,8 +58,8 @@ public class Board implements IBoard {
 	}
 	
 	@Override
-	public void calculateTrainsPositions(float pSecondsElapsed) {
-		trainsPositionCalculator.calculateTrainsPositions(pSecondsElapsed, trains, elements);
+	public List<ITrain> calculateTrainsPositions(float pSecondsElapsed) {
+		return trainsPositionCalculator.calculateTrainsPositions(pSecondsElapsed, trains, elements);
 	}
 	
 	@Override

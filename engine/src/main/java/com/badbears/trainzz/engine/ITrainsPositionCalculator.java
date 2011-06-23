@@ -1,8 +1,10 @@
 package com.badbears.trainzz.engine;
 
+import java.util.List;
+
 public interface ITrainsPositionCalculator {
 
-	void calculateTrainsPositions(float pSecondsElapsed, Iterable<ITrain> trains,
+	List<ITrain> calculateTrainsPositions(float pSecondsElapsed, Iterable<ITrain> trains,
 			Iterable<ITrackElement> elements);
 
 }

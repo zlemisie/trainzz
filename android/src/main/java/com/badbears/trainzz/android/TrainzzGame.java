@@ -108,34 +108,64 @@ public class TrainzzGame extends BaseExample {
 
 		private IBoard createBoard() {
 			IBoard board = new Board();
-			ITrackElement element = new StraightElement(0, 50, 100, 100);
-			board.addTrackElement(element);
-			ITrackElement element2 = new StraightElement(100, 100, 100, 300);
-			board.addTrackElement(element2);
-			ITrackElement element3 = new StraightElement(100, 300, 250, 50);
-			board.addTrackElement(element3);
-			ITrackElement element4 = new StraightElement(250, 50, 150, 150);
-			board.addTrackElement(element4);
 			
-			ITrackElement element4a = new StraightElement(150, 150, 250, 75);
-			board.addTrackElement(element4a);
+			// x 320, y 480
+			ITrackElement e1 = new StraightElement(80, 0, 160, 100);
+			board.addTrackElement(e1);
 			
-			ITrackElement element5 = new StraightElement(150, 150, 320, 400);
-			board.addTrackElement(element5);
+			ITrackElement e1a = new StraightElement(240, 0, 160, 100);
+			board.addTrackElement(e1a);
 			
-			ITrackElement element5a = new StraightElement(250, 75, 320, 50);
-			board.addTrackElement(element5a);
+			ITrackElement e2 = new StraightElement(160, 100, 80, 200);
+			board.addTrackElement(e2);
+			ITrackElement e3 = new StraightElement(160, 100, 240, 200);
+			board.addTrackElement(e3);
+			ITrackElement e4 = new StraightElement(80, 200, 40, 300);
+			board.addTrackElement(e4);
+			ITrackElement e5 = new StraightElement(240, 200, 280, 300);
+			board.addTrackElement(e5);
+			ITrackElement e6 = new StraightElement(80, 200, 120, 300);
+			board.addTrackElement(e6);
+			ITrackElement e7 = new StraightElement(240, 200, 200, 300);
+			board.addTrackElement(e7);
+			ITrackElement e8 = new StraightElement(120, 300, 160, 400);
+			board.addTrackElement(e8);
+			ITrackElement e9 = new StraightElement(200, 300, 200, 400);
+			board.addTrackElement(e9);
+			ITrackElement e10 = new StraightElement(40, 300, 200, 400);
+			board.addTrackElement(e10);
+			ITrackElement e11 = new StraightElement(280, 300, 200, 400);
+			board.addTrackElement(e11);
 			
-			ITrackElement element6 = new StraightElement(0, 480, 100, 380);
-			board.addTrackElement(element6);
-			ITrackElement element7 = new StraightElement(100, 380, 150, 400);
-			board.addTrackElement(element7);
-			ITrackElement element8 = new StraightElement(150, 400, 200, 400);
-			board.addTrackElement(element8);
-			ITrackElement element9 = new StraightElement(200, 400, 300, 400);
-			board.addTrackElement(element9);
-			ITrackElement element10 = new StraightElement(300, 400, 320, 420);
-			board.addTrackElement(element10);
+			
+//			ITrackElement element = new StraightElement(0, 50, 100, 100);
+//			board.addTrackElement(element);
+//			ITrackElement element2 = new StraightElement(100, 100, 100, 300);
+//			board.addTrackElement(element2);
+//			ITrackElement element3 = new StraightElement(100, 300, 250, 50);
+//			board.addTrackElement(element3);
+//			ITrackElement element4 = new StraightElement(250, 50, 150, 150);
+//			board.addTrackElement(element4);
+//			
+//			ITrackElement element4a = new StraightElement(150, 150, 250, 75);
+//			board.addTrackElement(element4a);
+//			
+//			ITrackElement element5 = new StraightElement(150, 150, 320, 400);
+//			board.addTrackElement(element5);
+//			
+//			ITrackElement element5a = new StraightElement(250, 75, 320, 50);
+//			board.addTrackElement(element5a);
+//			
+//			ITrackElement element6 = new StraightElement(0, 480, 100, 380);
+//			board.addTrackElement(element6);
+//			ITrackElement element7 = new StraightElement(100, 380, 150, 400);
+//			board.addTrackElement(element7);
+//			ITrackElement element8 = new StraightElement(150, 400, 200, 400);
+//			board.addTrackElement(element8);
+//			ITrackElement element9 = new StraightElement(200, 400, 300, 400);
+//			board.addTrackElement(element9);
+//			ITrackElement element10 = new StraightElement(300, 400, 320, 420);
+//			board.addTrackElement(element10);
 						
 			return board;
 		}
